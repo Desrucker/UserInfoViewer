@@ -101,7 +101,6 @@ public class InfoFrame extends JFrame implements ActionListener {
                 }
             }
         });
-
         return nameTextFieldPanel;
     }
 
