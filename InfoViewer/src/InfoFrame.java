@@ -1,13 +1,20 @@
+// @authors Xavier Barajas, Ethan Brewer, and Dominic Rucker
+
+// Import necessary libraries for creating a graphical user interface
 import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.border.*;
 
+// Define a class named InfoFrame that extends JFrame and implements ActionListener
 public class InfoFrame extends JFrame implements ActionListener {
 
+    // Define constants for the frame dimensions
     private static final int FRAME_WIDTH = 400;
     private static final int FRAME_HEIGHT = 400;
+
+    // Declare various GUI components as instance variables
     private JLabel buttonOutput;
     private JLabel majorOutput;
     private JLabel textOutput;
@@ -15,11 +22,12 @@ public class InfoFrame extends JFrame implements ActionListener {
     private JTextField textField;
     private JComboBox comboBox;
 
+    // Constructor for the InfoFrame class
     public InfoFrame() {
         // Initialize labels with default values
-        textOutput = new JLabel("Dominic Rucker");
-        buttonOutput = new JLabel("Single");
-        majorOutput = new JLabel("Finance");
+        textOutput = new JLabel("Name");
+        buttonOutput = new JLabel("Marital Status");
+        majorOutput = new JLabel("Major");
         JLabel userInfo = new JLabel("User Information:");
 
         // Create the control panel containing user input components
@@ -28,7 +36,7 @@ public class InfoFrame extends JFrame implements ActionListener {
         // Create a panel for labels and arrange them vertically
         JPanel labelsPanel = new JPanel();
         labelsPanel.setLayout(new BoxLayout(labelsPanel, BoxLayout.Y_AXIS));
-        
+
         labelsPanel.add(userInfo);
         labelsPanel.add(textOutput);
         labelsPanel.add(majorOutput);
@@ -83,8 +91,14 @@ public class InfoFrame extends JFrame implements ActionListener {
                 updateTextOutput();
             }
 
+            // Method to update the textOutput label based on text input
             private void updateTextOutput() {
-                textOutput.setText(textField.getText());
+                String text = textField.getText().trim();
+                if (text.isEmpty()) {
+                    textOutput.setText("Name");
+                } else {
+                    textOutput.setText(text);
+                }
             }
         });
 
@@ -95,6 +109,7 @@ public class InfoFrame extends JFrame implements ActionListener {
     public JPanel createComboBox() {
         String major[] = {"Computer Science", "Biology", "Nursing"};
         comboBox = new JComboBox<>(major);
+        comboBox.setSelectedIndex(-1); // Set initial selection to none
         comboBox.addActionListener(this);
         JPanel comboBoxPanel = new JPanel();
         comboBoxPanel.add(comboBox);
@@ -106,15 +121,17 @@ public class InfoFrame extends JFrame implements ActionListener {
     public JPanel createRadioButtons() {
         singleButton = new JRadioButton("Single");
         singleButton.addActionListener(this);
-        singleButton.setSelected(true);
         marriedButton = new JRadioButton("Married");
         marriedButton.addActionListener(this);
         separatedButton = new JRadioButton("Separated");
         separatedButton.addActionListener(this);
+
+        // Create a ButtonGroup to ensure only one radio button can be selected at a time
         ButtonGroup group = new ButtonGroup();
         group.add(singleButton);
         group.add(marriedButton);
         group.add(separatedButton);
+
         JPanel maritalStatusPanel = new JPanel();
         maritalStatusPanel.add(singleButton);
         maritalStatusPanel.add(marriedButton);
