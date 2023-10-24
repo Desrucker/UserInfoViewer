@@ -1,4 +1,4 @@
-// @authors Xavier Barajas, Ethan Brewer, and Dominic Rucker
+// @author Dominic Rucker
 
 // Import necessary libraries for creating a graphical user interface
 import javax.swing.*;
