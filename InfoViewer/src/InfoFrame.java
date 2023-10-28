@@ -1,4 +1,4 @@
-// @authors Xavier Barajas, Ethan Brewer, and Dominic Rucker
+// authors Dominic Rucker
 
 // Import necessary libraries for creating a graphical user interface
 import javax.swing.*;
@@ -15,12 +15,12 @@ public class InfoFrame extends JFrame implements ActionListener {
     private static final int FRAME_HEIGHT = 400;
 
     // Declare various GUI components as instance variables
-    private JLabel buttonOutput;
-    private JLabel majorOutput;
-    private JLabel textOutput;
-    private JRadioButton singleButton, marriedButton, separatedButton;
-    private JTextField textField;
-    private JComboBox comboBox;
+    private JLabel buttonOutput; // Label to display the selected marital status
+    private JLabel majorOutput;  // Label to display the selected major
+    private JLabel textOutput;   // Label to display the entered name
+    private JRadioButton singleButton, marriedButton, separatedButton; // Radio buttons for marital status
+    private JTextField textField; // Text field for entering the name
+    private JComboBox comboBox;  // Combo box for selecting a major
 
     // Constructor for the InfoFrame class
     public InfoFrame() {
@@ -51,10 +51,10 @@ public class InfoFrame extends JFrame implements ActionListener {
     private void createControlPanel() {
         JPanel controlPanel = new JPanel(new GridLayout(3, 1));
 
-        // Create panels for radio buttons, text field, and combo box
-        JPanel maritalStatusPanel = createRadioButtons();
+        // Create panels for name text field, major combo box, and marital status radio buttons
         JPanel namePanel = createTextField();
         JPanel majorPanel = createComboBox();
+        JPanel maritalStatusPanel = createRadioButtons();
 
         // Add these panels to the control panel
         controlPanel.add(namePanel);
@@ -106,7 +106,7 @@ public class InfoFrame extends JFrame implements ActionListener {
 
     // Create a panel for selecting the user's major
     public JPanel createComboBox() {
-        String major[] = {"Computer Science", "Biology", "Nursing"};
+        String major[] = {"Biology", "Computer Science", "Nursing"};
         comboBox = new JComboBox<>(major);
         comboBox.setSelectedIndex(-1); // Set initial selection to none
         comboBox.addActionListener(this);
@@ -118,24 +118,30 @@ public class InfoFrame extends JFrame implements ActionListener {
 
     // Create a panel for selecting the user's marital status
     public JPanel createRadioButtons() {
+        // Create JRadioButtons for the "Single," "Married," and "Separated" options
         singleButton = new JRadioButton("Single");
         singleButton.addActionListener(this);
+
         marriedButton = new JRadioButton("Married");
         marriedButton.addActionListener(this);
+
         separatedButton = new JRadioButton("Separated");
         separatedButton.addActionListener(this);
 
-        // Create a ButtonGroup to ensure only one radio button can be selected at a time
+        // Create a ButtonGroup to ensure that only one radio button can be selected at a time
         ButtonGroup group = new ButtonGroup();
         group.add(singleButton);
         group.add(marriedButton);
         group.add(separatedButton);
 
+        // Create a JPanel to contain the radio buttons with a titled border
         JPanel maritalStatusPanel = new JPanel();
         maritalStatusPanel.add(singleButton);
         maritalStatusPanel.add(marriedButton);
         maritalStatusPanel.add(separatedButton);
         maritalStatusPanel.setBorder(new TitledBorder(new EtchedBorder(), "Marital Status"));
+
+        // Return the JPanel containing the radio buttons with the "Marital Status" titled border
         return maritalStatusPanel;
     }
 

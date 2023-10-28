@@ -1,4 +1,4 @@
-// @authors Xavier Barajas, Ethan Brewer, and Dominic Rucker
+// @authors Dominic Rucker
 
 import javax.swing.*;
 
